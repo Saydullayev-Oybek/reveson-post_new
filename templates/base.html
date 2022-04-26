@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OYBEK</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">SAYDULLAYEV</a></h1>
+    </header>
+    {% if user.is_authenticated %}
+        <p>Xush kelibsiz {{ user.username }}!</p>
+        <p>
+            <a href="{% url 'logout' %}">Chiqib ketish</a>
+        </p>
+    {% else %}
+        <p>
+            <a href="{% url 'signup' %}">SignUp</a>
+        </p>
+        <p>
+            <a href="{% url 'login' %}">Saytga kirish</a>
+        </p>
+    {% endif %}
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer>
+        <a href="{% url 'post_new' %}">yangi post qushish</a>
+    </footer>
+
+</body>
+</html>
